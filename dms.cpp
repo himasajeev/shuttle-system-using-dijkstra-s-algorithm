@@ -253,8 +253,6 @@
                break;
           }while(c!='%');
        pathtr[i]=atoi(s);
-       cout<<"\n pathtr"<<i<<" "<<pathtr[i];
-       cout<<"\n"<<s;
        s[0]= '\0';
        i++;
       }  
@@ -264,15 +262,10 @@
    switch(time)
    {
     case 8 : for(int i= 0;i<9;i++){
-             weightage[i] =  8*stconst/pathst[i]  + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i]/2;
-             
-                       weightage[i] =  stconst/pathst[i] + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i];
-          cout<<pathst[i]<<" "<<pathtr[i]<<" "<<pathdist[i]<<" "<<weightage[i]<<"\n";}
-             
+             weightage[i] =  8*stconst/pathst[i]  + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i]/2;} 
              break;
     case 9 : for(int i= 0;i<9;i++){
          weightage[i] =  stconst*10/pathst[i] + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i]/2;
-         cout<<" "<<weightage[i];
         }
              break;
     case 10: for(int i= 0;i<9;i++)
@@ -327,13 +320,12 @@
    strcpy(path[5].pathc,"Nescafe- Nandini - GB to LHCC through underpass");
    path[5].weight= weightage[0]+weightage[2]+weightage[5] + weightage[8];
    float d_weight=dijkstra1(adjacent, 0);
-    cout<<"\n\n"<<d_weight<<"\n\n";
    for(int k=0;k<v-1;k++){
-    cout<<"\n"<<path[k].weight;
+   
      if(d_weight==path[k].weight)
       {
         cout<<"\n optimal path : "<<path[k].pathc;
-        //break;
+        break;
       }
     }
   }
@@ -361,7 +353,7 @@ float dijkstra2(float graph[7][7],int src)
      float pathdist[9];float sb[5];float sg[5];int i=-1;
      float pathst[9],pathtr[9]; 
      fstream objs;
-     objs.open("East-West.txt");//change file name
+     objs.open("East-West.txt");
      while(!objs.eof())
       {  
          i++;
@@ -452,11 +444,9 @@ float dijkstra2(float graph[7][7],int src)
    float stconst=250,dtconst=0.005,trconst=0.2;
    switch(time)
    {
-    case 9 : cout<<"\n time is 9\n";
-            for(int i= 0;i<9;i++){
+    case 9 : for(int i= 0;i<9;i++){
          weightage[i] = 8*stconst/pathst[i] + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i]/2;
-          cout<<pathst[i]<<" "<<pathtr[i]<<" "<<pathdist[i]<<" "<<weightage[i]<<"\n";}
-           cout<<"\n calculated weightage";
+	    }
              break;
     case 10: for(int i= 0;i<9;i++)
              weightage[i] =  8*stconst*4/pathst[i] + 2*trconst*pathtr[i] + 3*dtconst*pathdist[i]/2;
@@ -502,13 +492,11 @@ float dijkstra2(float graph[7][7],int src)
    
    strcpy(path[0].pathc,"LHCC to MB via Main Gate to LHCB-Nescafe");
    path[0].weight=weightage[1]+weightage[3]+weightage[6];
-   cout<<"\n"<<path[0].weight;
    strcpy(path[1].pathc,"LHCC to GB via Reddy's Gate to MB-LHCB-Nescafe");
    path[1].weight=weightage[1]+weightage[3]+weightage[4] + weightage[7];
    cout<<"\n"<<path[1].weight;
    strcpy(path[2].pathc,"LHCC to GB through underpass to MB-LHCB-Nescafe");
    path[2].weight= weightage[1]+weightage[3]+weightage[4]+weightage[5]+weightage[8];  
-
    strcpy(path[3].pathc,"LHCC to MB via Main Gate to GB-Nandini-Nescafe");
    path[3].weight= weightage[0]+weightage[2]+weightage[7]; 
    strcpy(path[4].pathc,"LHCC to GB via Reddy's Gate to Nandini-Nescafe");
@@ -522,7 +510,7 @@ float dijkstra2(float graph[7][7],int src)
     cout<<"\n"<<path[k].weight;
     cout<<"\n"<<d_weight;
      if(d_weight==path[k].weight)
-      { cout<<"\naaaaaaaaa";
+      { 
         cout<<"\n optimal path : "<<path[k].pathc;
         break;
       }
